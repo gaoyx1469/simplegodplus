@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.trial.dao.GameDirectEntityDao">
+
+    <!--配置查询所有的方法，id需要跟方法名一致-->
+    <select id="getAllGames">
+        select * from sg_game_info
+    </select>
+
+</mapper>
