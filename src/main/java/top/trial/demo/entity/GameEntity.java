@@ -1,7 +1,12 @@
 package top.trial.demo.entity;
 
-
-public class GameEntity {
+/**
+ * Game JavaBean
+ * 对应simplegod数据库中的表sg_game_info
+ *
+ * @author Gaoyx
+ */
+public class GameEntity {// TODO wait for using
 
     public String name;
     private Double grade;
@@ -13,6 +18,7 @@ public class GameEntity {
     GameEntity(String name) {
         this.name = name;
     }
+
 
     private GameEntity(Double grade) {
         this.grade = grade;

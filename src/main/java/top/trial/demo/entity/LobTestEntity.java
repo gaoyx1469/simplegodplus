@@ -5,7 +5,7 @@ import java.sql.Blob;
 import java.sql.Clob;
 import java.util.Date;
 
-public class LobTestEntity implements Serializable {
+public class LobTestEntity implements Serializable {// TODO wait for using
 	private int slt_id;
 	private String slt_name;
 	private Blob slt_pageimg;

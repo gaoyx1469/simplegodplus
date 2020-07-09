@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Gaoyx
  *
  */
-public class UserEntity {
+public class UserEntity {// TODO wait for using
 
 	private String name;// 姓名
 	private String password;// 密码

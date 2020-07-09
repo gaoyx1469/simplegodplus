@@ -8,7 +8,7 @@ import java.util.List;
  * @author Gaoyx
  *
  */
-public class ProvinceEntity {
+public class ProvinceEntity {// TODO wait for using
 	private String name;
 	private List<CityEntity> cities;
 

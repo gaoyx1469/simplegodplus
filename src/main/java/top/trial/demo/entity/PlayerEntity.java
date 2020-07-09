@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Gaoyx
  *
  */
-public class PlayerEntity implements Serializable {
+public class PlayerEntity implements Serializable {// TODO wait for using
 
 	private String name;
 	private int age;

@@ -5,7 +5,7 @@ package top.trial.demo.entity;
  *
  * @author Gaoyx
  */
-public class CityEntity {
+public class CityEntity {// TODO wait for using
     private String name;
     private String alias;
     private int level;

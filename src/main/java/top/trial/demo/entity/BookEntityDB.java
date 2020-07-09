@@ -9,7 +9,7 @@ import java.util.Map;
  * @author Gaoyx
  *
  */
-public class BookEntityDB {
+public class BookEntityDB {// TODO wait for using
 
 	private static Map<String, BookEntity> books = new LinkedHashMap<>();
 

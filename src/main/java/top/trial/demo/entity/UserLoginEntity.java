@@ -1,6 +1,6 @@
 package top.trial.demo.entity;
 
-public class UserLoginEntity {
+public class UserLoginEntity {// TODO wait for using
 	private String name;// 姓名
 	private String password;// 密码
 	private String nickname;// 别名

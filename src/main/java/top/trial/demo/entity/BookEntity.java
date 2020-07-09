@@ -6,7 +6,7 @@ package top.trial.demo.entity;
  * @author Gaoyx
  *
  */
-public class BookEntity {
+public class BookEntity {// TODO wait for using
 
 	private String bookId;
 	private String bookName;

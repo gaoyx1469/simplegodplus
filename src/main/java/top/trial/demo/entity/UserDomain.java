@@ -6,7 +6,7 @@ package top.trial.demo.entity;
  * @author Gaoyx
  *
  */
-public class UserDomain {
+public class UserDomain {// TODO wait for using
 
 	private int userId;
 	private String username;

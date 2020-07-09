@@ -3,7 +3,7 @@ package top.trial.demo.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class UserInfoDomain implements Serializable {
+public class UserInfoDomain implements Serializable {// TODO wait for using
 	private String sui_id;
 	private String sui_name;
 	private String sui_nickname;
