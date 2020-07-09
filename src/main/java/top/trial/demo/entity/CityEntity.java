@@ -60,12 +60,10 @@ public class CityEntity {
             return false;
         if (level != other.level)
             return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
+        if (name == null && other.name != null) {
             return false;
-        return true;
+        } else
+            return name == null || name.equals(other.name);
     }
 
     @Override
