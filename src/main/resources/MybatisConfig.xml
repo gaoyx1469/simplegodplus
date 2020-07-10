@@ -22,6 +22,6 @@
     <!--指定映射配置文件的位置-->
     <mappers>
         <!--每个DAO对应一个配置文件-->
-        <mapper resource="top/trial/dao/GameDirectEntityMapper.xml"/>
+        <mapper resource="top/trial/mybatis/dao/GameDirectEntityMapper.xml"/>
     </mappers>
 </configuration>

@@ -1,4 +1,4 @@
-package top.trial.demo.entity;
+package top.trial.mybatis.entity;
 
 import java.io.Serializable;
 import java.util.Objects;

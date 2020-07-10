@@ -1,4 +1,4 @@
-package top.trial.demo.dao;
+package top.trial.mybatis.dao;
 
 import top.trial.demo.entity.GameEntity;
 
