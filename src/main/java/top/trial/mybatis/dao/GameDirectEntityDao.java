@@ -1,6 +1,6 @@
 package top.trial.mybatis.dao;
 
-import top.trial.demo.entity.GameEntity;
+import top.trial.mybatis.entity.GameDirectEntity;
 
 import java.util.List;
 
@@ -13,8 +13,9 @@ public interface GameDirectEntityDao {
 
     /**
      * 获取所有game
-     * @return List<GameEntity>
+     *
+     * @return List<GameDirectEntity>
      */
-    List<GameEntity> getAllGames();
+    List<GameDirectEntity> getAllGames();
 
 }
