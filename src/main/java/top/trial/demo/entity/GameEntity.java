@@ -2,7 +2,6 @@ package top.trial.demo.entity;
 
 /**
  * Game JavaBean
- * 对应simplegod数据库中的表sg_game_info
  *
  * @author Gaoyx
  */
