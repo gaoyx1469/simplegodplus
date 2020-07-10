@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.trial.mybatis.dao.GameEntityDao">
+
+
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况-->
+    <resultMap id="GameResultMap" type="top.trial.mybatis.entity.GameEntity">
+        <result column="sgi_id" property="gameId"/>
+        <result column="sgi_name" property="gameName"/>
+        <result column="sgi_describe" property="gameDescribe"/>
+    </resultMap>
+    <!--配置查询所有的方法，id需要跟方法名一致-->
+    <select id="getAllGames" resultMap="GameResultMap">
+        select * from sg_game_info
+    </select>
+
+    <insert id="addGame" parameterType="top.trial.mybatis.entity.GameEntity">
+        insert into sg_game_info (SGI_NAME,SGI_DESCRIBE) values (#{gameName},#{gameDescribe})
+    </insert>
+
+</mapper>
