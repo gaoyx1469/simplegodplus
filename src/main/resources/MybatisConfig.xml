@@ -4,6 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--mybatis主配置文件-->
 <configuration>
+
+    <!--配置properties-->
+    <properties resource="jdbc.properties"/>
+
+    <typeAliases>
+        <!--为类创建别名，别名将不区分大小写
+        <typeAlias type="top.trial.mybatis.entity.GameDirectEntity" alias="direct"/>
+        -->
+        <!--整个包都创建别名，别名为类名-->
+        <package name="top.trial.mybatis.entity"/>
+    </typeAliases>
+
     <environments default="mysql">
         <!--mysql环境-->
         <environment id="mysql">
@@ -11,10 +23,10 @@
             <transactionManager type="JDBC"/>
             <!--连接池-->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/simplegod?serverTimezone=UTC"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${jdbc_url}"/>
+                <property name="username" value="${user}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
@@ -24,5 +36,10 @@
         <!--每个DAO对应一个配置文件-->
         <mapper resource="top/trial/mybatis/dao/GameDirectEntityMapper.xml"/>
         <mapper resource="top/trial/mybatis/dao/GameEntityMapper.xml"/>
+        <!--
+        使用package标签直接配置整个dao文件夹，要求是映射文件名和DAO名必须一致
+        否则报错：org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
+        <package name="top.trial.mybatis.dao"/>
+        -->
     </mappers>
 </configuration>

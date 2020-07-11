@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import top.trial.mybatis.dao.GameEntityDao;
 import top.trial.mybatis.entity.GameEntity;
 
 import java.io.IOException;
@@ -36,6 +35,7 @@ public class GameEntityDaoTest {
 
     @After
     public void destroy() throws IOException {
+        session.commit();
         conf.close();
         session.close();
     }
@@ -49,8 +49,31 @@ public class GameEntityDaoTest {
 
     @Test
     public void addGame() {
-        GameEntity game = new GameEntity("神界2：原罪", "回合制神作");
+        GameEntity game = new GameEntity(15,"神界2：原罪", "回合制神作");
         dao.addGame(game);
-        session.commit();
+        System.out.println(game.toString());//自增主键注入game中
+    }
+
+    @Test
+    public void deleteGame() {
+        dao.deleteGame(6);
+    }
+
+    @Test
+    public void updateGame() {
+        GameEntity game = new GameEntity(7, "GTA5", "NB");
+        dao.updateGame(game);
+    }
+
+    @Test
+    public void getGameById() {
+        System.out.println(dao.getGameById(7));
+    }
+
+    @Test
+    public void getGamesByName() {
+        List<GameEntity> games = dao.getGamesByName("%2%");
+        for (GameEntity game : games)
+            System.out.println(game.toString());
     }
 }
