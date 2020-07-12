@@ -1,6 +1,7 @@
 package top.trial.mybatis.dao;
 
 import top.trial.mybatis.entity.GameEntity;
+import top.trial.mybatis.entity.GameEntityVls;
 
 import java.util.List;
 
@@ -30,4 +31,10 @@ public interface GameEntityDao {
 
     //根据name模糊查询操作
     List<GameEntity> getGamesByName(String name);
+
+    //根据属性直接匹配&if标签试用
+    List<GameEntity> getGamesByProp(GameEntity game);
+
+    //根据多个id多笔查询
+    List<GameEntity> getGamesByIds(GameEntityVls gameVls);
 }
