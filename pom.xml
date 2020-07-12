@@ -66,6 +66,12 @@
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.2.2</version>
+                    <!--此处配置不打进war包的文件-->
+                    <configuration>
+                        <packagingExcludes>
+                            WEB-INF/classes/unpackage/**
+                        </packagingExcludes>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
