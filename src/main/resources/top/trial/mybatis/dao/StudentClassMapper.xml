@@ -4,24 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.trial.mybatis.dao.StudentClassDao">
 
-    <!--配置resultMap，解决实体类属性与表列名不一致的情况,以及一对多匹配情况，association的javatype属性可以没有？也没报错啊-->
-    <resultMap id="StudentClassResultMap" type="top.trial.mybatis.entity.StudentEntity">
-        <id column="ssi_id" property="studentId"/>
-        <result column="ssi_name" property="studentName"/>
-        <result column="ssi_age" property="studentAge"/>
-        <result column="ssi_gender" property="studentSex"/>
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况,以及多对一、一对一匹配情况，association的javatype属性可以没有？也没报错啊-->
+    <resultMap id="StudentClassResultMap" type="studentEntity">
+        <id column="SSI_ID" property="studentId"/>
+        <result column="SSI_NAME" property="studentName"/>
+        <result column="SSI_AGE" property="studentAge"/>
+        <result column="SSI_GENDER" property="studentSex"/>
         <association property="studentClass">
-            <id column="sci_id" property="classId"/>
-            <id column="sci_name" property="className"/>
-            <id column="sci_describe" property="classDescribe"/>
+            <id column="SCI_ID" property="classId"/>
+            <result column="SCI_NAME" property="className"/>
+            <result column="SCI_DESCRIBE" property="classDescribe"/>
         </association>
     </resultMap>
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况,以及一对多匹配情况，collection的ofType没配置报错空指针异常-->
+    <resultMap id="ClassStudentResultMap" type="classEntity">
+        <id column="SCI_ID" property="classId"/>
+        <result column="SCI_NAME" property="className"/>
+        <result column="SCI_DESCRIBE" property="classDescribe"/>
+        <collection property="classStudents" ofType="studentEntity">
+            <id column="SSI_ID" property="studentId"/>
+            <result column="SSI_NAME" property="studentName"/>
+            <result column="SSI_AGE" property="studentAge"/>
+            <result column="SSI_GENDER" property="studentSex"/>
+        </collection>
+    </resultMap>
 
-    <!--配置查询所有的方法，id需要跟方法名一致-->
+    <!--配置查询所有student的方法，同事查到student对应的班级信息，id需要跟方法名一致-->
     <select id="getAllStudents" resultMap="StudentClassResultMap">
-        select *
-        from sg_student_inf,
-             sg_class_inf
-        where SSI_CID = SCI_ID;
+        SELECT *
+        FROM SG_STUDENT_INF,
+             SG_CLASS_INF
+        WHERE SSI_CID = SCI_ID;
+    </select>
+
+    <!--配置查询所有班级的方法，同时查到班级的所有学生信息，id需要跟方法名一致-->
+    <select id="getAllClasses" resultMap="ClassStudentResultMap">
+        SELECT *
+        FROM SG_CLASS_INF
+                 LEFT JOIN
+             SG_STUDENT_INF ON SCI_ID = SSI_CID;
     </select>
 </mapper>

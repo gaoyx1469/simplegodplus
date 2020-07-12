@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.trial.mybatis.dao.ClassTeacherDao">
+
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况,以及多对多匹配情况，collection的ofType没配置报错空指针异常-->
+    <resultMap id="ClassTeacherResultMap" type="classEntity">
+        <id column="SCI_ID" property="classId"/>
+        <result column="SCI_NAME" property="className"/>
+        <result column="SCI_DESCRIBE" property="classDescribe"/>
+        <collection property="classTeachers" ofType="teacherEntity">
+            <id column="STI_ID" property="teacherId"/>
+            <result column="STI_NAME" property="teacherName"/>
+            <result column="STI_DATE" property="startTeachingDate"/>
+        </collection>
+    </resultMap>
+    <resultMap id="TeacherClassResultMap" type="teacherEntity">
+        <id column="STI_ID" property="teacherId"/>
+        <result column="STI_NAME" property="teacherName"/>
+        <result column="STI_DATE" property="startTeachingDate"/>
+        <collection property="teachClasses" ofType="classEntity">
+            <id column="SCI_ID" property="classId"/>
+            <result column="SCI_NAME" property="className"/>
+            <result column="SCI_DESCRIBE" property="classDescribe"/>
+        </collection>
+    </resultMap>
+
+    <!--配置查询所有班级的方法，同时查到班级的所有学生信息，id需要跟方法名一致-->
+    <select id="getAllClasses" resultMap="ClassTeacherResultMap">
+        SELECT *
+        FROM SG_CLASS_INF
+                 LEFT JOIN
+             SG_CLASS_TEACHER_REL ON SCI_ID = SCTR_CID
+                 LEFT JOIN SG_TEACHER_INF ON SCTR_TID = STI_ID;
+    </select>
+
+    <!--配置查询所有student的方法，同事查到student对应的班级信息，id需要跟方法名一致-->
+    <select id="getAllTeachers" resultMap="TeacherClassResultMap">
+        SELECT *
+        FROM SG_TEACHER_INF
+                 LEFT JOIN
+             SG_CLASS_TEACHER_REL ON STI_ID = SCTR_TID
+                 LEFT JOIN SG_CLASS_INF ON SCTR_CID = SCI_ID;
+    </select>
+</mapper>

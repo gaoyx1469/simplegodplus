@@ -16,7 +16,7 @@ public class ClassEntity {
     private String className;
     private String classDescribe;
     private List<StudentEntity> classStudents;
-    private List<StudentEntity> classTeacher;
+    private List<TeacherEntity> classTeachers;
 
     public int getClassId() {
         return classId;
@@ -50,20 +50,22 @@ public class ClassEntity {
         this.classStudents = classStudents;
     }
 
-    public List<StudentEntity> getClassTeacher() {
-        return classTeacher;
+    public List<TeacherEntity> getClassTeacher() {
+        return classTeachers;
     }
 
-    public void setClassTeacher(List<StudentEntity> classTeacher) {
-        this.classTeacher = classTeacher;
+    public void setClassTeacher(List<TeacherEntity> classTeachers) {
+        this.classTeachers = classTeachers;
     }
 
     @Override
     public String toString() {
         return "ClassEntity{" +
                 "classId=" + classId +
-                ", className=" + className +
-                ", classDescribe=" + classDescribe +
+                ", className='" + className + '\'' +
+                ", classDescribe='" + classDescribe + '\'' +
+                ", classStudents=" + classStudents +
+                ", classTeachers=" + classTeachers +
                 '}';
     }
 }

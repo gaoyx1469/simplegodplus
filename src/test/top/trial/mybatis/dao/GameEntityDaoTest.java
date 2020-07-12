@@ -60,12 +60,12 @@ public class GameEntityDaoTest {
 
     @Test
     public void deleteGame() {
-        dao.deleteGame(6);
+        dao.deleteGame(18);
     }
 
     @Test
     public void updateGame() {
-        GameEntity game = new GameEntity(7, "GTA5", "NB");
+        GameEntity game = new GameEntity(10, "GTA5", "NB");
         dao.updateGame(game);
     }
 

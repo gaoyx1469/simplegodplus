@@ -6,81 +6,81 @@
 
     <!--SQL标签，最后不要加分号，因为后面可能有拼接-->
     <sql id="selectAllColumn">
-        select *
-        from sg_game_info
+        SELECT *
+        FROM SG_GAME_INFO
     </sql>
 
 
     <!--配置resultMap，解决实体类属性与表列名不一致的情况-->
     <resultMap id="GameResultMap" type="top.trial.mybatis.entity.GameEntity">
-        <id column="sgi_id" property="gameId"/>
-        <result column="sgi_name" property="gameName"/>
-        <result column="sgi_describe" property="gameDescribe"/>
+        <id column="SGI_ID" property="gameId"/>
+        <result column="SGI_NAME" property="gameName"/>
+        <result column="SGI_DESCRIBE" property="gameDescribe"/>
     </resultMap>
     <!--配置查询所有的方法，id需要跟方法名一致-->
     <select id="getAllGames" resultMap="GameResultMap">
-        select *
-        from sg_game_info
+        SELECT *
+        FROM SG_GAME_INFO
     </select>
 
     <!--配置单条插入的方法，id需要跟方法名一致-->
     <insert id="addGame" parameterType="top.trial.mybatis.entity.GameEntity">
         <!-- 设置插入后查询本条自增主键，并插入到GameEntity中 -->
-        <selectKey keyColumn="sgi_id" keyProperty="gameId" order="AFTER" resultType="int">
-            select last_insert_id()
+        <selectKey keyColumn="SGI_ID" keyProperty="gameId" order="AFTER" resultType="int">
+            SELECT last_insert_id()
         </selectKey>
-        insert into sg_game_info (SGI_NAME,SGI_DESCRIBE) values (#{gameName},#{gameDescribe})
+        INSERT INTO SG_GAME_INFO (SGI_NAME,SGI_DESCRIBE) VALUES (#{gameName},#{gameDescribe})
     </insert>
 
     <!--配置单条删除的方法，id需要跟方法名一致，参数名可随意-->
     <delete id="deleteGame" parameterType="INT">
-        delete
-        from sg_game_info
-        where SGI_ID = #{0}
+        DELETE
+        FROM SG_GAME_INFO
+        WHERE SGI_ID = #{0}
     </delete>
 
     <!--配置单条更新的方法，id需要跟方法名一致-->
     <update id="updateGame" parameterType="top.trial.mybatis.entity.GameEntity">
-        update sg_game_info
-        set sgi_name    = #{gameName},
-            sgi_describe=#{gameDescribe}
-        where sgi_id = #{gameId};
+        UPDATE SG_GAME_INFO
+        SET SGI_NAME    = #{gameName},
+            SGI_DESCRIBE=#{gameDescribe}
+        WHERE SGI_ID = #{gameId};
     </update>
 
     <!--配置单条查询的方法，id需要跟方法名一致-->
     <select id="getGameById" parameterType="Integer" resultMap="GameResultMap">
-        select *
-        from sg_game_info
-        where sgi_id = #{0};
+        SELECT *
+        FROM SG_GAME_INFO
+        WHERE SGI_ID = #{0};
     </select>
 
     <!--配置根据Name模糊查询的方法，id需要跟方法名一致-->
     <select id="getGamesByName" parameterType="String" resultMap="GameResultMap">
-        select *
-        from sg_game_info
-        where sgi_name like #{0};
+        SELECT *
+        FROM SG_GAME_INFO
+        WHERE SGI_NAME LIKE #{0};
     </select>
 
     <!--配置根据实体类属性模糊查询的方法，id需要跟方法名一致，测试了parameterType配置在主配置文件的别名以及if标签-->
     <select id="getGamesByProp" parameterType="gameEntity" resultMap="GameResultMap">
-        select * from sg_game_info where 1=1
+        SELECT * FROM SG_GAME_INFO WHERE 1=1
         <if test="gameName != null">
-            and sgi_name = #{gameName}
+            AND SGI_NAME = #{gameName}
         </if>
         <if test="gameDescribe != null and gameId != null">
-            and sgi_describe = #{gameDescribe} and sgi_id = #{gameId}
+            AND SGI_DESCRIBE = #{gameDescribe} AND SGI_ID = #{gameId}
         </if>
     </select>
 
     <!--配置根据实体类属性id列表查询的方法，id需要跟方法名一致，测试了parameterType配置在主配置文件的别名以及foreach标签和where标签以及include标签-->
     <select id="getGamesByIds" parameterType="gameEntityVls" resultMap="GameResultMap">
-        <include refid="selectAllColumn"></include>
+        <include refid="selectAllColumn"/>
         <where>
             <if test="gameIds == null or gameIds.size() == 0">
                 1 != 1;
             </if>
             <if test="gameIds != null and gameIds.size() > 0">
-                <foreach collection="gameIds" open="sgi_id in(" item="id" close=")" separator=",">
+                <foreach collection="gameIds" open="SGI_ID IN(" item="id" close=")" separator=",">
                     #{id}
                 </foreach>
             </if>

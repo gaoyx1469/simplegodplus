@@ -6,7 +6,8 @@
 
     <!--配置查询所有的方法，id需要跟方法名一致-->
     <select id="getAllGames" resultType="top.trial.mybatis.entity.GameDirectEntity">
-        select * from sg_game_info
+        SELECT *
+        FROM SG_GAME_INFO
     </select>
 
 </mapper>
