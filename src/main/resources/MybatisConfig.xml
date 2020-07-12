@@ -36,6 +36,7 @@
         <!--每个DAO对应一个配置文件-->
         <mapper resource="top/trial/mybatis/dao/GameDirectEntityMapper.xml"/>
         <mapper resource="top/trial/mybatis/dao/GameEntityMapper.xml"/>
+        <mapper resource="top/trial/mybatis/dao/StudentClassMapper.xml"/>
         <!--
         使用package标签直接配置整个dao文件夹，要求是映射文件名和DAO名必须一致
         否则报错：org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
