@@ -6,7 +6,8 @@
 
     <!--SQL标签，最后不要加分号，因为后面可能有拼接-->
     <sql id="selectAllColumn">
-        select * from sg_game_info
+        select *
+        from sg_game_info
     </sql>
 
 
@@ -18,7 +19,8 @@
     </resultMap>
     <!--配置查询所有的方法，id需要跟方法名一致-->
     <select id="getAllGames" resultMap="GameResultMap">
-        select * from sg_game_info
+        select *
+        from sg_game_info
     </select>
 
     <!--配置单条插入的方法，id需要跟方法名一致-->
@@ -32,22 +34,31 @@
 
     <!--配置单条删除的方法，id需要跟方法名一致，参数名可随意-->
     <delete id="deleteGame" parameterType="INT">
-        delete from sg_game_info where SGI_ID = #{0}
+        delete
+        from sg_game_info
+        where SGI_ID = #{0}
     </delete>
 
     <!--配置单条更新的方法，id需要跟方法名一致-->
     <update id="updateGame" parameterType="top.trial.mybatis.entity.GameEntity">
-        update sg_game_info set sgi_name = #{gameName}, sgi_describe=#{gameDescribe} where sgi_id=#{gameId};
+        update sg_game_info
+        set sgi_name    = #{gameName},
+            sgi_describe=#{gameDescribe}
+        where sgi_id = #{gameId};
     </update>
 
     <!--配置单条查询的方法，id需要跟方法名一致-->
     <select id="getGameById" parameterType="Integer" resultMap="GameResultMap">
-        select * from sg_game_info where sgi_id=#{0};
+        select *
+        from sg_game_info
+        where sgi_id = #{0};
     </select>
 
     <!--配置根据Name模糊查询的方法，id需要跟方法名一致-->
     <select id="getGamesByName" parameterType="String" resultMap="GameResultMap">
-        select * from sg_game_info where sgi_name like #{0};
+        select *
+        from sg_game_info
+        where sgi_name like #{0};
     </select>
 
     <!--配置根据实体类属性模糊查询的方法，id需要跟方法名一致，测试了parameterType配置在主配置文件的别名以及if标签-->
