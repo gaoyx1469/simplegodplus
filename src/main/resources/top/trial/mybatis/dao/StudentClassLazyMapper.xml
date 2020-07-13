@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.trial.mybatis.dao.StudentClassLazyDao">
+
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况，这里association增加column属性指定作为外键的列名，association的javatype属性可以没有？也没报错啊-->
+    <resultMap id="StudentClassResultMap" type="studentEntity">
+        <id column="SSI_ID" property="studentId"/>
+        <result column="SSI_NAME" property="studentName"/>
+        <result column="SSI_AGE" property="studentAge"/>
+        <result column="SSI_GENDER" property="studentSex"/>
+        <association property="studentClass" column="SSI_CID"
+                     select="top.trial.mybatis.dao.StudentClassLazyDao.getClassById"></association>
+    </resultMap>
+
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况-->
+    <resultMap id="ClassResultMap" type="classEntity">
+        <id column="SCI_ID" property="classId"/>
+        <result column="SCI_NAME" property="className"/>
+        <result column="SCI_DESCRIBE" property="classDescribe"/>
+    </resultMap>
+
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况，这里collection增加column属性指定作为查询条件的列名,association的javatype属性可以没有？也没报错啊-->
+    <resultMap id="ClassStudentResultMap" type="classEntity">
+        <id column="SCI_ID" property="classId"/>
+        <result column="SCI_NAME" property="className"/>
+        <result column="SCI_DESCRIBE" property="classDescribe"/>
+        <collection property="classStudents" ofType="studentEntity" column="SCI_ID"
+                    select="top.trial.mybatis.dao.StudentClassLazyDao.getStudentsByClassId"></collection>
+    </resultMap>
+
+    <!--配置resultMap，解决实体类属性与表列名不一致的情况-->
+    <resultMap id="StudentResultMap" type="studentEntity">
+        <id column="SSI_ID" property="studentId"/>
+        <result column="SSI_NAME" property="studentName"/>
+        <result column="SSI_AGE" property="studentAge"/>
+        <result column="SSI_GENDER" property="studentSex"/>
+    </resultMap>
+
+    <!--配置查询所有student的方法，id需要跟方法名一致-->
+    <select id="getAllStudents" resultMap="StudentClassResultMap">
+        SELECT *
+        FROM SG_STUDENT_INF
+    </select>
+
+    <!--配置根据id查询班级的方法，id需要跟方法名一致-->
+    <select id="getClassById" resultMap="ClassResultMap">
+        SELECT *
+        FROM SG_CLASS_INF
+        WHERE SCI_ID = #{cid}
+    </select>
+
+    <!--配置查询所有班级的方法，id需要跟方法名一致-->
+    <select id="getAllClasses" resultMap="ClassStudentResultMap">
+        SELECT *
+        FROM SG_CLASS_INF
+    </select>
+
+    <!--配置根据id查询student的方法，id需要跟方法名一致-->
+    <select id="getStudentsByClassId" resultMap="StudentResultMap">
+        SELECT *
+        FROM SG_STUDENT_INF
+        WHERE SSI_CID = #{cid}
+    </select>
+
+</mapper>

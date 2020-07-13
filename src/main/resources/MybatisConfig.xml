@@ -8,6 +8,11 @@
     <!--配置properties-->
     <properties resource="jdbc.properties"/>
 
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/><!--开启全局懒加载，默认false-->
+        <setting name="aggressiveLazyLoading" value="false"/><!--立即加载所有的延迟加载属性，默认false-->
+    </settings>
+
     <typeAliases>
         <!--为类创建别名，别名将不区分大小写
         <typeAlias type="top.trial.mybatis.entity.GameDirectEntity" alias="direct"/>
@@ -28,6 +33,12 @@
                 <property name="username" value="${user}"/>
                 <property name="password" value="${password}"/>
             </dataSource>
+
+            <!--演示JNDI连接池
+            <dataSource type="JNDI">
+                <property name="data_source" value="java:comp/env/jdbc/mybatisJNDI"/>
+            </dataSource>
+            -->
         </environment>
     </environments>
 
@@ -38,6 +49,7 @@
         <mapper resource="top/trial/mybatis/dao/GameEntityMapper.xml"/>
         <mapper resource="top/trial/mybatis/dao/StudentClassMapper.xml"/>
         <mapper resource="top/trial/mybatis/dao/ClassTeacherMapper.xml"/>
+        <mapper resource="top/trial/mybatis/dao/StudentClassLazyMapper.xml"/>
         <!--
         使用package标签直接配置整个dao文件夹，要求是映射文件名和DAO名必须一致
         否则报错：org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
