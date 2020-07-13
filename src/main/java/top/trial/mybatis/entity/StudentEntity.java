@@ -1,5 +1,7 @@
 package top.trial.mybatis.entity;
 
+import java.io.Serializable;
+
 /**
  * Student JavaBean
  * <p>
@@ -9,7 +11,7 @@ package top.trial.mybatis.entity;
  * @Date 2020/7/12
  * @Version 1.0
  */
-public class StudentEntity {
+public class StudentEntity implements Serializable {
 
     private int studentId;
     private String studentName;

@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.trial.mybatis.dao.GameEntityDao">
 
+    <!--开启对二级缓存的支持-->
+    <cache/>
+
     <!--SQL标签，最后不要加分号，因为后面可能有拼接-->
     <sql id="selectAllColumn">
         SELECT *
@@ -47,8 +50,8 @@
         WHERE SGI_ID = #{gameId};
     </update>
 
-    <!--配置单条查询的方法，id需要跟方法名一致-->
-    <select id="getGameById" parameterType="Integer" resultMap="GameResultMap">
+    <!--配置单条查询的方法，id需要跟方法名一致--><!--同时配置了二级缓存-->
+    <select id="getGameById" parameterType="Integer" resultMap="GameResultMap" useCache="true">
         SELECT *
         FROM SG_GAME_INFO
         WHERE SGI_ID = #{0};

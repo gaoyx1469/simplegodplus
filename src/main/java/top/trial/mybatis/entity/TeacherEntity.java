@@ -1,5 +1,6 @@
 package top.trial.mybatis.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @Date 2020/7/12
  * @Version 1.0
  */
-public class TeacherEntity {
+public class TeacherEntity implements Serializable {
     private int teacherId;
     private String teacherName;
     private Date startTeachingDate;

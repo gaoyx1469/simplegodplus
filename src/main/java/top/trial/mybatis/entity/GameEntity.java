@@ -1,5 +1,7 @@
 package top.trial.mybatis.entity;
 
+import java.io.Serializable;
+
 /**
  * Game JavaBean
  * <p>
@@ -9,7 +11,7 @@ package top.trial.mybatis.entity;
  * @Date 2020/7/10
  * @Version 1.0
  */
-public class GameEntity {
+public class GameEntity implements Serializable {
 
     private int gameId;
     private String gameName;

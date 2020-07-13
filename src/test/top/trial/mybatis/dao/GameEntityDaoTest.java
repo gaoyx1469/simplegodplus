@@ -26,11 +26,12 @@ public class GameEntityDaoTest {
     private InputStream conf;
     private SqlSession session;
     private GameEntityDao dao;
+    private SqlSessionFactory factory;
 
     @Before
     public void init() throws IOException {
         conf = Resources.getResourceAsStream("MybatisConfig.xml");
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(conf);
+        factory = new SqlSessionFactoryBuilder().build(conf);
         //设置自动提交
         //session = factory.openSession(true);
         session = factory.openSession();
@@ -104,5 +105,48 @@ public class GameEntityDaoTest {
         List<GameEntity> games = dao.getGamesByIds(gameEntityVls);
         for (GameEntity game : games)
             System.out.println(game.toString());
+    }
+
+    /**
+     * 测试一级缓存
+     */
+    @Test
+    public void testGetGameByIdCache() {
+        GameEntity game1 = dao.getGameById(5);
+        System.out.println(game1);
+
+        //清空缓存
+        //session.clearCache();
+
+        GameEntity game2 = dao.getGameById(5);
+        System.out.println(game2);
+
+        System.out.println(game1 == game2);
+
+    }
+
+    /**
+     * 测试二级缓存
+     */
+    @Test
+    public void testGetGameByIdCacheII() {
+
+        SqlSession session1 = factory.openSession();
+        GameEntityDao dao1 = session1.getMapper(GameEntityDao.class);
+        GameEntity game1 = dao1.getGameById(5);
+        System.out.println(game1);
+
+        //session1不close的话，没有使用二级缓存
+        session1.close();
+        //清空缓存
+        //session.clearCache();
+
+        SqlSession session2 = factory.openSession();
+        GameEntityDao dao2 = session2.getMapper(GameEntityDao.class);
+        GameEntity game2 = dao2.getGameById(5);
+        System.out.println(game2);
+
+        System.out.println(game1 == game2);
+
     }
 }

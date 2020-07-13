@@ -10,7 +10,8 @@
 
     <settings>
         <setting name="lazyLoadingEnabled" value="true"/><!--开启全局懒加载，默认false-->
-        <setting name="aggressiveLazyLoading" value="false"/><!--立即加载所有的延迟加载属性，默认false-->
+        <setting name="aggressiveLazyLoading" value="false"/><!--立即加载所有的延迟加载属性，默认就是false-->
+        <setting name="cacheEnabled" value="true"/><!--开启二级缓存，默认就是true-->
     </settings>
 
     <typeAliases>

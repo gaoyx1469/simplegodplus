@@ -1,5 +1,6 @@
 package top.trial.mybatis.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @Date 2020/7/12
  * @Version 1.0
  */
-public class ClassEntity {
+public class ClassEntity implements Serializable {
     private int classId;
     private String className;
     private String classDescribe;
