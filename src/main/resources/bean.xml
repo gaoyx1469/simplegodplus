@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--第一个IOC例子-->
+    <bean id="firstBean" class="top.trial.spring.SpringBean"
+          lazy-init="default" scope="singleton"/>
+
+    <!-- 别名 -->
+    <alias name="firstBean" alias="what"/>
+    <bean id="ditest" class="top.trial.spring.SpringDIBean">
+        <constructor-arg name="id" value="244466666"/>
+        <constructor-arg name="name" value="WIFI密码"/>
+        <constructor-arg name="date" ref="now"/>
+    </bean>
+    <bean id="now" class="java.util.Date"/>
+    <bean id="ditestnew" class="top.trial.spring.SpringDIBean">
+        <constructor-arg name="id" value="114"/>
+        <property name="name" value="啥？"/>
+        <property name="date" ref="now"/>
+    </bean>
+</beans>
