@@ -1,9 +1,6 @@
 package top.trial.mybatis.dao;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import top.trial.mybatis.entity.GameEntity;
 
 import java.util.List;
@@ -22,7 +19,16 @@ public interface GameEntityAnnotationDao {
      *
      * @return List<GameEntity>
      */
-    @Select("SELECT SGI_ID AS 'gameId' ,SGI_NAME AS 'gameName',SGI_DESCRIBE AS 'gameDescribe' FROM SG_GAME_INFO ")
+    @Select("SELECT * FROM SG_GAME_INFO ")
+    @Results(
+            id = "gameEntityMap",
+            value =
+                    {
+                            @Result(id = true, column = "SGI_ID", property = "gameId"),
+                            @Result(column = "SGI_NAME", property = "gameName"),
+                            @Result(column = "SGI_DESCRIBE", property = "gameDescribe"),
+                    }
+    )
     List<GameEntity> getAllGames();
 
 
@@ -32,14 +38,15 @@ public interface GameEntityAnnotationDao {
      * @param gameName 名称
      * @return List<GameEntity>
      */
-    @Select("SELECT SGI_ID AS 'gameId' ,SGI_NAME AS 'gameName',SGI_DESCRIBE AS 'gameDescribe' FROM SG_GAME_INFO WHERE SGI_NAME LIKE #{name} ")
+    @Select("SELECT * FROM SG_GAME_INFO WHERE SGI_NAME LIKE #{name} ")
+    @ResultMap("gameEntityMap")
     List<GameEntity> getGamesByName(String gameName);
 
 
     /**
      * 查询数据条数
      *
-     * @return
+     * @return int
      */
     @Select("SELECT COUNT(*) FROM SG_GAME_INFO ")
     int getGameNumber();
@@ -50,7 +57,8 @@ public interface GameEntityAnnotationDao {
      * @param gameId gameId
      * @return GameEntity
      */
-    @Select("SELECT SGI_ID AS 'gameId' ,SGI_NAME AS 'gameName',SGI_DESCRIBE AS 'gameDescribe' FROM SG_GAME_INFO WHERE SGI_ID = #{id} ")
+    @Select("SELECT * FROM SG_GAME_INFO WHERE SGI_ID = #{id} ")
+    @ResultMap("gameEntityMap")
     GameEntity getGameById(int gameId);
 
     /**
