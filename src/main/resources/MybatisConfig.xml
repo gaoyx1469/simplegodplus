@@ -52,6 +52,8 @@
         <mapper resource="top/trial/mybatis/dao/ClassTeacherMapper.xml"/>
         <mapper resource="top/trial/mybatis/dao/StudentClassLazyMapper.xml"/>
         <mapper class="top.trial.mybatis.dao.GameEntityAnnotationDao"/>
+        <mapper class="top.trial.mybatis.dao.StudentClassAnnotationDao"/>
+        <mapper class="top.trial.mybatis.dao.ClassTeacherAnnotationDao"/>
         <!--
         使用package标签直接配置整个dao文件夹，要求是映射文件名和DAO名必须一致
         否则报错：org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):

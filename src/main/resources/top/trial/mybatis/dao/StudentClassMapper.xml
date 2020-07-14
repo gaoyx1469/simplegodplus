@@ -29,7 +29,7 @@
         </collection>
     </resultMap>
 
-    <!--配置查询所有student的方法，同事查到student对应的班级信息，id需要跟方法名一致-->
+    <!--配置查询所有student的方法，同时查到student对应的班级信息，id需要跟方法名一致-->
     <select id="getAllStudents" resultMap="StudentClassResultMap">
         SELECT *
         FROM SG_STUDENT_INF,
