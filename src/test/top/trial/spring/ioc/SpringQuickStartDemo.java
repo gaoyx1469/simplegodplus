@@ -1,4 +1,4 @@
-package top.trial.spring;
+package top.trial.spring.ioc;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

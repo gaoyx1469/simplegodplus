@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 告知spring创建容器时要扫描的包 -->
+    <context:component-scan
+            base-package="top.trial.spring"/>
+
+    <!-- 配置DataSource，静态工厂方法获得，下面分别是C3P0和DBCP两个数据源
+    <bean id="dataSource" class="top.util.jdbc.MysqlC3P0Util"
+          factory-method="getDataSource">
+    </bean>-->
+
+    <bean id="dataSource" class="top.util.jdbc.MysqlDBCPUtil"
+          factory-method="getDataSource"/>
+
+    <!-- 配置QueryRunner-->
+    <bean id="queryRunner"
+          class="org.apache.commons.dbutils.QueryRunner">
+        <constructor-arg name="ds" ref="dataSource"/>
+    </bean>
+</beans>

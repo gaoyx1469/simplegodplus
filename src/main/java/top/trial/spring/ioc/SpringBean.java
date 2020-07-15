@@ -1,4 +1,4 @@
-package top.trial.spring;
+package top.trial.spring.ioc;
 
 /**
  * Spring IoC 演示Bean
