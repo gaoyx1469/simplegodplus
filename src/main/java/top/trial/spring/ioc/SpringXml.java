@@ -1,4 +1,4 @@
-package top.trial.spring;
+package top.trial.spring.ioc;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.springframework.context.annotation.Bean;

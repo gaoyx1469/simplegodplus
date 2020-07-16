@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import top.trial.spring.SpringXml;
-import top.trial.spring.service.AnnotationService;
+import top.trial.spring.ioc.SpringXml;
+import top.trial.spring.ioc.service.AnnotationService;
 
 /**
  * @Author gaoyx1469

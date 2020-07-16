@@ -1,4 +1,4 @@
-package top.trial.spring.service;
+package top.trial.spring.ioc.service;
 
 import top.trial.library.dbutils.entity.GameEntity;
 
@@ -10,6 +10,7 @@ import java.util.List;
  * @author Gaoyx
  */
 public interface AnnotationService {
+
     List<GameEntity> getAllGames();
 
     GameEntity getGameById(int id);

@@ -1,4 +1,4 @@
-package top.trial.spring.dao;
+package top.trial.spring.ioc.dao;
 
 import top.trial.library.dbutils.entity.GameEntity;
 

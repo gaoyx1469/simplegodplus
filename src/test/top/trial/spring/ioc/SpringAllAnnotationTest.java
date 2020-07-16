@@ -2,8 +2,7 @@ package top.trial.spring.ioc;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import top.trial.spring.SpringXml;
-import top.trial.spring.service.AnnotationService;
+import top.trial.spring.ioc.service.AnnotationService;
 
 /**
  * @Author gaoyx1469

@@ -3,8 +3,7 @@ package top.trial.spring.ioc;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import top.trial.library.dbutils.entity.GameEntity;
-import top.trial.spring.service.AnnotationService;
+import top.trial.spring.ioc.service.AnnotationService;
 
 public class SpringAnnotationBeanTest {
     public static void main(String[] args) {

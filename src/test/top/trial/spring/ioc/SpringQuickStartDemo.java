@@ -2,6 +2,7 @@ package top.trial.spring.ioc;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import top.trial.spring.ioc.entity.SpringBean;
 
 /**
  * Spring 快速入门演示

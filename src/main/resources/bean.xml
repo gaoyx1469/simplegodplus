@@ -4,21 +4,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--第一个IOC例子-->
-    <bean id="firstBean" class="top.trial.spring.ioc.SpringBean"
-          lazy-init="default" scope="singleton"/>
+    <!--第一个IOC例子 还有属性lazy-init="default" scope="singleton"可配置-->
+    <bean id="firstBean" class="top.trial.spring.ioc.entity.SpringBean"/>
 
     <!-- 别名 -->
     <alias name="firstBean" alias="what"/>
 
     <!--测试依赖注入-->
-    <bean id="ditest" class="top.trial.spring.ioc.SpringDIBean">
+    <bean id="ditest" class="top.trial.spring.ioc.entity.SpringDIBean">
         <constructor-arg name="id" value="244466666"/>
         <constructor-arg name="name" value="WIFI密码"/>
         <constructor-arg name="date" ref="now"/>
     </bean>
     <bean id="now" class="java.util.Date"/>
-    <bean id="ditestnew" class="top.trial.spring.ioc.SpringDIBean">
+    <bean id="ditestnew" class="top.trial.spring.ioc.entity.SpringDIBean">
         <constructor-arg name="id" value="114"/>
         <property name="name" value="啥？"/>
         <property name="date" ref="now"/>

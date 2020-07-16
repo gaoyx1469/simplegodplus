@@ -1,9 +1,9 @@
-package top.trial.spring.dao.impl;
+package top.trial.spring.ioc.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
 import top.trial.library.dbutils.entity.GameEntity;
-import top.trial.spring.dao.AnnotationDao;
+import top.trial.spring.ioc.dao.AnnotationDao;
 
 import java.util.List;
 

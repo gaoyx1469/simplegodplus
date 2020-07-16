@@ -1,12 +1,9 @@
-package top.trial.spring.service.impl;
+package top.trial.spring.ioc.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
 import top.trial.library.dbutils.entity.GameEntity;
-import top.trial.spring.dao.AnnotationDao;
-import top.trial.spring.service.AnnotationService;
+import top.trial.spring.ioc.dao.AnnotationDao;
+import top.trial.spring.ioc.service.AnnotationService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,12 +13,12 @@ import java.util.List;
  *
  * @author Gaoyx
  */
-@Component(value = "annotationService")
-public class AnnotationServiceImpl implements AnnotationService {
+@Component(value = "allAnnotationService")
+public class AllAnnotationServiceImpl implements AnnotationService {
 
     //@Autowired
     //@Qualifier("annotationDao")
-    @Resource(name = "annotationDao")
+    @Resource(name = "allAnnotationDao")
     private AnnotationDao annotationDao;
 
 
