@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
 
-import org.springframework.context.annotation.Bean;
 import top.util.properties.PropertiesUtil;
 
 public class TransactionUtil {
@@ -38,6 +37,7 @@ public class TransactionUtil {
                 conn = ds.getConnection();
                 tl.set(conn);
             }
+            //System.out.println("通过TransactionUtil获取连接|Connection--" + conn);
             return conn;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -51,6 +51,7 @@ public class TransactionUtil {
             if (conn == null) {
                 conn = getConnection();
             }
+            //System.out.println("通过TransactionUtil开启事务|Connection--" + conn);
             conn.setAutoCommit(false);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -64,6 +65,7 @@ public class TransactionUtil {
             if (conn == null) {
                 conn = getConnection();
             }
+            //System.out.println("通过TransactionUtil回滚事务|Connection--" + conn);
             conn.rollback();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -77,6 +79,7 @@ public class TransactionUtil {
             if (conn == null) {
                 conn = getConnection();
             }
+            //System.out.println("通过TransactionUtil提交事务|Connection--" + conn);
             conn.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -88,6 +91,7 @@ public class TransactionUtil {
         try {
             Connection conn = tl.get();
             if (conn != null) {
+                //System.out.println("通过TransactionUtil释放连接|Connection--" + conn);
                 conn.close();
                 tl.remove();
             }

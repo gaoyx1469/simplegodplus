@@ -3,6 +3,7 @@ package top.trial.spring.aop.dao;
 import top.trial.spring.aop.entity.AccountEntity;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface AccountOperationWithoutAopDao {
      *
      * @return List<AccountEntity>
      */
-    List<AccountEntity> getAllAccounts();
+    List<AccountEntity> getAllAccounts() throws SQLException;
 
     /**
      * 根据id查询账户信息
@@ -25,7 +26,7 @@ public interface AccountOperationWithoutAopDao {
      * @param conn 数据库连接
      * @return List<AccountEntity>
      */
-    List<AccountEntity> getAllAccounts(Connection conn);
+    List<AccountEntity> getAllAccounts(Connection conn) throws SQLException;
 
     /**
      * 根据id查询账户信息
@@ -33,7 +34,7 @@ public interface AccountOperationWithoutAopDao {
      * @param id 账户id
      * @return AccountEntity
      */
-    AccountEntity getAccountById(int id);
+    AccountEntity getAccountById(int id) throws SQLException;
 
     /**
      * 根据id查询账户信息
@@ -42,14 +43,14 @@ public interface AccountOperationWithoutAopDao {
      * @param id   账户id
      * @return AccountEntity
      */
-    AccountEntity getAccountById(Connection conn, int id);
+    AccountEntity getAccountById(Connection conn, int id) throws SQLException;
 
     /**
      * 添加账户
      *
      * @param accountEntity 账户信息
      */
-    void addAccount(AccountEntity accountEntity);
+    void addAccount(AccountEntity accountEntity) throws SQLException;
 
     /**
      * 添加账户
@@ -57,14 +58,14 @@ public interface AccountOperationWithoutAopDao {
      * @param conn          数据库连接
      * @param accountEntity 账户信息
      */
-    void addAccount(Connection conn, AccountEntity accountEntity);
+    void addAccount(Connection conn, AccountEntity accountEntity) throws SQLException;
 
     /**
      * 更新账户信息
      *
      * @param accountEntity 账户信息
      */
-    void updateAccount(AccountEntity accountEntity);
+    void updateAccount(AccountEntity accountEntity) throws SQLException;
 
     /**
      * 更新账户信息
@@ -72,14 +73,14 @@ public interface AccountOperationWithoutAopDao {
      * @param conn          数据库连接
      * @param accountEntity 账户信息
      */
-    void updateAccount(Connection conn, AccountEntity accountEntity);
+    void updateAccount(Connection conn, AccountEntity accountEntity) throws SQLException;
 
     /**
      * 删除账户
      *
      * @param id 账户id
      */
-    void deleteAccount(int id);
+    void deleteAccount(int id) throws SQLException;
 
     /**
      * 删除账户
@@ -87,6 +88,6 @@ public interface AccountOperationWithoutAopDao {
      * @param conn 数据库连接
      * @param id   账户id
      */
-    void deleteAccount(Connection conn, int id);
+    void deleteAccount(Connection conn, int id) throws SQLException;
 
 }
