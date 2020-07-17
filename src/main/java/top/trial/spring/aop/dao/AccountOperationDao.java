@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2020/7/16
  * @Version 1.0
  */
-public interface AccountOperationWithoutAopDao {
+public interface AccountOperationDao {
 
     /**
      * 根据id查询账户信息

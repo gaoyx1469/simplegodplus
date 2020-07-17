@@ -6,7 +6,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.stereotype.Repository;
-import top.trial.spring.aop.dao.AccountOperationWithoutAopDao;
+import top.trial.spring.aop.dao.AccountOperationDao;
 import top.trial.spring.aop.entity.AccountEntity;
 
 import javax.annotation.Resource;
@@ -22,7 +22,7 @@ import java.util.Map;
  * @Version 1.0
  */
 @Repository("AccountOperationWithoutAopDao")
-public class AccountOperationWithoutAopDaoImpl implements AccountOperationWithoutAopDao {
+public class AccountOperationDaoImpl implements AccountOperationDao {
 
     @Resource(name = "queryRunner")
     QueryRunner qr;

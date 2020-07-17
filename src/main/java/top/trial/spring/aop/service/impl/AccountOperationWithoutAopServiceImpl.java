@@ -1,7 +1,7 @@
 package top.trial.spring.aop.service.impl;
 
 import org.springframework.stereotype.Service;
-import top.trial.spring.aop.dao.AccountOperationWithoutAopDao;
+import top.trial.spring.aop.dao.AccountOperationDao;
 import top.trial.spring.aop.entity.AccountEntity;
 import top.trial.spring.aop.service.AccountOperationService;
 
@@ -21,7 +21,7 @@ import java.util.List;
 public class AccountOperationWithoutAopServiceImpl implements AccountOperationService {
 
     @Resource(name = "AccountOperationWithoutAopDao")
-    AccountOperationWithoutAopDao dao;
+    AccountOperationDao dao;
 
     @Override
     public List<AccountEntity> getAllAccounts() {
