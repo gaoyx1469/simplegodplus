@@ -17,67 +17,103 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
-public class AccountOperationWithoutAopServiceImpl implements AccountOperationWithoutAopService {
+public class AccountOperationWithoutAopServiceTransactionImpl implements AccountOperationWithoutAopService {
 
     @Resource(name = "AccountOperationWithoutAopDao")
     AccountOperationWithoutAopDao dao;
 
     @Override
     public List<AccountEntity> getAllAccounts() {
+
+        List<AccountEntity> accounts;
         try {
-            return dao.getAllAccounts();
+            TransactionUtil.startTransaction();
+            accounts = dao.getAllAccounts(TransactionUtil.getConnection());
+            TransactionUtil.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            TransactionUtil.rollback();
+            throw new RuntimeException();
+        } finally {
+            TransactionUtil.release();
         }
+        return accounts;
     }
 
     @Override
     public AccountEntity getAccountById(int id) {
+
+        AccountEntity account;
         try {
-            return dao.getAccountById(id);
+            TransactionUtil.startTransaction();
+            account = dao.getAccountById(TransactionUtil.getConnection(), id);
+            TransactionUtil.commit();
         } catch (Exception e) {
+            TransactionUtil.rollback();
             throw new RuntimeException(e);
+        } finally {
+            TransactionUtil.release();
         }
+        return account;
     }
 
     @Override
     public void addAccount(AccountEntity accountEntity) {
         try {
-            dao.addAccount(accountEntity);
+            TransactionUtil.startTransaction();
+            dao.addAccount(TransactionUtil.getConnection(), accountEntity);
+            TransactionUtil.commit();
         } catch (Exception e) {
+            TransactionUtil.rollback();
             throw new RuntimeException(e);
+        } finally {
+            TransactionUtil.release();
         }
     }
 
     @Override
     public void updateAccount(AccountEntity accountEntity) {
         try {
-            dao.updateAccount(accountEntity);
+            TransactionUtil.startTransaction();
+            dao.updateAccount(TransactionUtil.getConnection(), accountEntity);
+            TransactionUtil.commit();
         } catch (Exception e) {
+            TransactionUtil.rollback();
             throw new RuntimeException(e);
+        } finally {
+            TransactionUtil.release();
         }
     }
 
     @Override
     public void deleteAccount(int id) {
         try {
-            dao.deleteAccount(id);
+            TransactionUtil.startTransaction();
+            dao.deleteAccount(TransactionUtil.getConnection(), id);
+            TransactionUtil.commit();
         } catch (Exception e) {
+            TransactionUtil.rollback();
             throw new RuntimeException(e);
+        } finally {
+            TransactionUtil.release();
         }
     }
 
     @Override
     public void transfer(int fromId, int toId, BigDecimal amount) {
         try {
-            AccountEntity fromAccount = dao.getAccountById(fromId);
-            AccountEntity toAccount = dao.getAccountById(toId);
+            TransactionUtil.startTransaction();
+            AccountEntity fromAccount = dao.getAccountById(TransactionUtil.getConnection(), fromId);
+            AccountEntity toAccount = dao.getAccountById(TransactionUtil.getConnection(), toId);
             amountCheck(amount, fromAccount, toAccount);
-            dao.updateAccount(fromAccount);
+            dao.updateAccount(TransactionUtil.getConnection(), fromAccount);
             int i = 1 / 0;
-            dao.updateAccount(toAccount);
+            dao.updateAccount(TransactionUtil.getConnection(), toAccount);
+            TransactionUtil.commit();
         } catch (Exception e) {
+            TransactionUtil.rollback();
             throw new RuntimeException(e);
+        } finally {
+            TransactionUtil.release();
         }
     }
 

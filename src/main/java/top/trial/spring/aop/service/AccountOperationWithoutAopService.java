@@ -49,20 +49,12 @@ public interface AccountOperationWithoutAopService {
     void deleteAccount(int id);
 
     /**
-     * 无统一事务控制的转账模拟操作
+     * 转账模拟操作
      *
      * @param fromId 转出方id
      * @param toId   转入方id
      * @param amount 转账金额
      */
-    void transferWithoutTransaction(int fromId, int toId, BigDecimal amount);
+    void transfer(int fromId, int toId, BigDecimal amount);
 
-    /**
-     * 有统一事务控制的转账模拟操作
-     *
-     * @param fromId 转出方id
-     * @param toId   转入方id
-     * @param amount 转账金额
-     */
-    void transferWithTransaction(int fromId, int toId, BigDecimal amount);
 }

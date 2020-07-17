@@ -21,7 +21,7 @@ import java.util.Map;
  * @Date 2020/7/16
  * @Version 1.0
  */
-@Repository
+@Repository("AccountOperationWithoutAopDao")
 public class AccountOperationWithoutAopDaoImpl implements AccountOperationWithoutAopDao {
 
     @Resource(name = "queryRunner")

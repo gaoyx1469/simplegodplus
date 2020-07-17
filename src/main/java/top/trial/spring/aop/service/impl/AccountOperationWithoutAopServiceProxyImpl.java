@@ -17,7 +17,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
-public class AccountOperationWithoutAopServiceImpl implements AccountOperationWithoutAopService {
+public class AccountOperationWithoutAopServiceProxyImpl implements AccountOperationWithoutAopService {
 
     @Resource(name = "AccountOperationWithoutAopDao")
     AccountOperationWithoutAopDao dao;
@@ -25,7 +25,7 @@ public class AccountOperationWithoutAopServiceImpl implements AccountOperationWi
     @Override
     public List<AccountEntity> getAllAccounts() {
         try {
-            return dao.getAllAccounts();
+            return dao.getAllAccounts(TransactionUtil.getConnection());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +34,7 @@ public class AccountOperationWithoutAopServiceImpl implements AccountOperationWi
     @Override
     public AccountEntity getAccountById(int id) {
         try {
-            return dao.getAccountById(id);
+            return dao.getAccountById(TransactionUtil.getConnection(), id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -43,7 +43,7 @@ public class AccountOperationWithoutAopServiceImpl implements AccountOperationWi
     @Override
     public void addAccount(AccountEntity accountEntity) {
         try {
-            dao.addAccount(accountEntity);
+            dao.addAccount(TransactionUtil.getConnection(), accountEntity);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +52,7 @@ public class AccountOperationWithoutAopServiceImpl implements AccountOperationWi
     @Override
     public void updateAccount(AccountEntity accountEntity) {
         try {
-            dao.updateAccount(accountEntity);
+            dao.updateAccount(TransactionUtil.getConnection(), accountEntity);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -61,7 +61,7 @@ public class AccountOperationWithoutAopServiceImpl implements AccountOperationWi
     @Override
     public void deleteAccount(int id) {
         try {
-            dao.deleteAccount(id);
+            dao.deleteAccount(TransactionUtil.getConnection(), id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -70,12 +70,12 @@ public class AccountOperationWithoutAopServiceImpl implements AccountOperationWi
     @Override
     public void transfer(int fromId, int toId, BigDecimal amount) {
         try {
-            AccountEntity fromAccount = dao.getAccountById(fromId);
-            AccountEntity toAccount = dao.getAccountById(toId);
+            AccountEntity fromAccount = dao.getAccountById(TransactionUtil.getConnection(), fromId);
+            AccountEntity toAccount = dao.getAccountById(TransactionUtil.getConnection(), toId);
             amountCheck(amount, fromAccount, toAccount);
-            dao.updateAccount(fromAccount);
+            dao.updateAccount(TransactionUtil.getConnection(), fromAccount);
             int i = 1 / 0;
-            dao.updateAccount(toAccount);
+            dao.updateAccount(TransactionUtil.getConnection(), toAccount);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

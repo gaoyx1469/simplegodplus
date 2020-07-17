@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.trial.spring.aop.entity.AccountEntity;
 import top.trial.spring.aop.service.AccountOperationWithoutAopService;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 /**
@@ -19,25 +20,32 @@ import java.math.BigDecimal;
 @ContextConfiguration(locations = "classpath:springAnnotation.xml")
 public class SpringAccountOperationWithoutAopTest {
 
-    @Autowired
-    AccountOperationWithoutAopService service;
+    @Resource(name = "accountOperationWithoutAopServiceTransactionImpl")
+    AccountOperationWithoutAopService serviceWithTransaction;
+
+    @Resource(name = "accountOperationWithoutAopServiceImpl")
+    AccountOperationWithoutAopService serviceWithoutTransaction;
+
+    @Resource(name = "getProxy")
+    AccountOperationWithoutAopService serviceWithProxy;
 
     @Test
     public void solution() {
-        //System.out.println(service.getAccountById(1));
-        //System.out.println(service.getAccountById(2));
-        /*AccountEntity accountEntity = new AccountEntity();
-        accountEntity.setAccountId(3);
-        accountEntity.setAccountName("小孙");
-        accountEntity.setAccountMoney(new BigDecimal("3000"));
-        service.addAccount(accountEntity);*/
+        AccountEntity accountEntity1 = serviceWithProxy.getAccountById(1);
+        AccountEntity accountEntity2 = serviceWithProxy.getAccountById(2);
+        accountEntity1.setAccountMoney(new BigDecimal("20000"));
+        accountEntity2.setAccountMoney(new BigDecimal("30000"));
+        serviceWithProxy.updateAccount(accountEntity1);
+        serviceWithProxy.updateAccount(accountEntity2);
+
 
         //事务没控制住
-        service.transferWithoutTransaction(1, 2, new BigDecimal("100.01"));
+        //serviceWithoutTransaction.transfer(1, 2, new BigDecimal("100"));
 
         //事务控制住了
-        //service.transferWithTransaction(2, 3, new BigDecimal("200.02"));
+        //serviceWithTransaction.transfer(1, 2, new BigDecimal("200"));
 
-
+        //事务同样控制住了，且service实现类比上个简洁，因为事务增强代码由动态代理实现，此处使用的事代理工厂生成service的代理对象
+        serviceWithProxy.transfer(1, 2, new BigDecimal("300"));
     }
 }
