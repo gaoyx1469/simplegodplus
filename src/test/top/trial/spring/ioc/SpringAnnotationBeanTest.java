@@ -7,7 +7,7 @@ import top.trial.spring.ioc.service.AnnotationService;
 
 public class SpringAnnotationBeanTest {
     public static void main(String[] args) {
-        ApplicationContext ac = new ClassPathXmlApplicationContext("springAnnotation.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("top/trial/spring/springAnnotation.xml");
         AnnotationService as = (AnnotationService) ac.getBean("annotationService");
         as.gameUpdate(null);
         as.getAllGames();

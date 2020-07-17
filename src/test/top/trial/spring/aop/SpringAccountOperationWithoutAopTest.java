@@ -2,7 +2,6 @@ package top.trial.spring.aop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.trial.spring.aop.entity.AccountEntity;
@@ -17,7 +16,7 @@ import java.math.BigDecimal;
  * @Version 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:springAnnotation.xml")
+@ContextConfiguration(locations = "classpath:top/trial/spring/springAnnotation.xml")
 public class SpringAccountOperationWithoutAopTest {
 
     @Resource(name = "accountOperationWithoutAopServiceTransactionImpl")

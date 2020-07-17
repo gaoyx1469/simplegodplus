@@ -20,7 +20,7 @@ public class SpringQuickStartDemo {
         // BeanFactory采用延迟加载策略，在使用时才将对象创建出来，实现类使用XmlBeanFactory
         System.out.println("容器初始化开始");
         System.out.println("----------------------");
-        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("top/trial/spring/bean.xml");
         System.out.println("----------------------");
         System.out.println("容器初始化完毕");
         System.out.println("----------------------");

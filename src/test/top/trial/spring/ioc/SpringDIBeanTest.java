@@ -12,7 +12,7 @@ import top.trial.spring.ioc.entity.SpringDIBean;
 public class SpringDIBeanTest {
 
     public static void main(String[] args) {
-        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("top/trial/spring/bean.xml");
         // 全构造器注入
         SpringDIBean sdib = (SpringDIBean) ac.getBean("ditest");
         System.out.println(sdib.toString());
