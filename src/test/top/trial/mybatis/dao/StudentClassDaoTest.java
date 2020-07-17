@@ -28,7 +28,7 @@ public class StudentClassDaoTest {
 
     @Before
     public void init() throws IOException {
-        conf = Resources.getResourceAsStream("MybatisConfig.xml");
+        conf = Resources.getResourceAsStream("top/trial/mybatis/MybatisConfig.xml");
         SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(conf);
         //设置自动提交
         //session = factory.openSession(true);

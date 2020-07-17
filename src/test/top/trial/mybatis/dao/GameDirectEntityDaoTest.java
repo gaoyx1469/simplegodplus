@@ -24,7 +24,7 @@ public class GameDirectEntityDaoTest {
      */
     public static void main(String[] args) throws IOException {
         //读取配置文件【Resources是mybatis自己的工具类】
-        InputStream conf = Resources.getResourceAsStream("MybatisConfig.xml");
+        InputStream conf = Resources.getResourceAsStream("top/trial/mybatis/MybatisConfig.xml");
         //创建工厂SqlSessionFactory【建造者模式，根据字节输入流构建SqlSessionFactory】
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         SqlSessionFactory factory = builder.build(conf);
