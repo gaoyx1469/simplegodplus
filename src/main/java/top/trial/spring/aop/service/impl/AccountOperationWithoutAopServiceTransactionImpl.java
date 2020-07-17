@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class AccountOperationWithoutAopServiceTransactionImpl implements AccountOperationService {
 
-    @Resource(name = "AccountOperationWithoutAopDao")
+    @Resource(name = "AccountOperationDao")
     AccountOperationDao dao;
 
     @Override
