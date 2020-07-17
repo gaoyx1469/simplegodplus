@@ -30,12 +30,12 @@ public class SpringAccountOperationWithoutAopTest {
 
     @Test
     public void solution() {
-        AccountEntity accountEntity1 = serviceWithProxy.getAccountById(1);
-        AccountEntity accountEntity2 = serviceWithProxy.getAccountById(2);
-        accountEntity1.setAccountMoney(new BigDecimal("20000"));
-        accountEntity2.setAccountMoney(new BigDecimal("30000"));
-        serviceWithProxy.updateAccount(accountEntity1);
-        serviceWithProxy.updateAccount(accountEntity2);
+        //AccountEntity accountEntity1 = serviceWithProxy.getAccountById(1);
+        //AccountEntity accountEntity2 = serviceWithProxy.getAccountById(2);
+        //accountEntity1.setAccountMoney(new BigDecimal("20000"));
+        //accountEntity2.setAccountMoney(new BigDecimal("30000"));
+        //serviceWithProxy.updateAccount(accountEntity1);
+        //serviceWithProxy.updateAccount(accountEntity2);
 
 
         //事务没控制住

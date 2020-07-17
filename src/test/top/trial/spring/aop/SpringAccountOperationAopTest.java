@@ -14,10 +14,11 @@ import javax.annotation.Resource;
  * @Version 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:top/trial/spring/bean_aop.xml")
+//@ContextConfiguration(locations = "classpath:top/trial/spring/bean_aop.xml")
+@ContextConfiguration(locations = "classpath:top/trial/spring/bean_aop_annotation.xml")
 public class SpringAccountOperationAopTest {
 
-    @Resource(name = "accountService")
+    @Resource(name = "accountOperationAopServiceImpl")
     AccountOperationService accountService;
 
     @Test

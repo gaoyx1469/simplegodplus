@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
     <!-- 配置业务层bean 没使用扫描-->
-    <bean id="accountService"
+    <bean id="accountOperationAopServiceImpl"
           class="top.trial.spring.aop.service.impl.AccountOperationAopServiceImpl"></bean>
     <bean id="AccountOperationDao"
           class="top.trial.spring.aop.dao.impl.AccountOperationDaoImpl"></bean>
