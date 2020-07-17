@@ -9,9 +9,9 @@
 
     <!-- 配置业务层bean 没使用扫描-->
     <bean id="accountOperationAopServiceImpl"
-          class="top.trial.spring.aop.service.impl.AccountOperationAopServiceImpl"></bean>
-    <bean id="AccountOperationDao"
-          class="top.trial.spring.aop.dao.impl.AccountOperationDaoImpl"></bean>
+          class="top.trial.spring.aop.service.impl.AccountOperationAopServiceImpl"/>
+    <bean id="accountOperationDao"
+          class="top.trial.spring.aop.dao.impl.AccountOperationDaoImpl"/>
     <bean id="dataSource" class="top.util.jdbc.MysqlDBCPUtil"
           factory-method="getDataSource"/>
     <!-- 配置QueryRunner-->
@@ -21,7 +21,7 @@
     </bean>
 
     <!-- 配置通知类 -->
-    <bean id="logger" class="top.trial.spring.aop.advice.Logger"></bean>
+    <bean id="logger" class="top.trial.spring.aop.advice.Logger"/>
 
     <!-- AOP
         环境准备：

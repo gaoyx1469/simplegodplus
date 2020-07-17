@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class AccountOperationWithoutAopServiceProxyImpl implements AccountOperationService {
 
-    @Resource(name = "AccountOperationDao")
+    @Resource(name = "accountOperationDao")
     AccountOperationDao dao;
 
     @Override
