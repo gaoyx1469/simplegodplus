@@ -3,7 +3,7 @@ package top.trial.spring.aop.service.impl;
 import org.springframework.stereotype.Service;
 import top.trial.spring.aop.dao.AccountOperationWithoutAopDao;
 import top.trial.spring.aop.entity.AccountEntity;
-import top.trial.spring.aop.service.AccountOperationWithoutAopService;
+import top.trial.spring.aop.service.AccountOperationService;
 import top.util.jdbc.TransactionUtil;
 
 import javax.annotation.Resource;
@@ -12,12 +12,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * 代理事务版本实现类
+ *
  * @Author gaoyx1469
- * @Date 2020/7/16
+ * @Date 2020/7/17
  * @Version 1.0
  */
 @Service
-public class AccountOperationWithoutAopServiceProxyImpl implements AccountOperationWithoutAopService {
+public class AccountOperationWithoutAopServiceProxyImpl implements AccountOperationService {
 
     @Resource(name = "AccountOperationWithoutAopDao")
     AccountOperationWithoutAopDao dao;

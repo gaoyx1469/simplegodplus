@@ -19,11 +19,11 @@ public class AccountOperationWithoutAopServiceProxyFactory {
 
     //注入无事务版本的service实现类对象
     @Resource(name = "accountOperationWithoutAopServiceProxyImpl")
-    AccountOperationWithoutAopService service;
+    AccountOperationService service;
 
     @Bean
-    public AccountOperationWithoutAopService getProxy() {
-        return (AccountOperationWithoutAopService) Proxy.newProxyInstance(service.getClass().getClassLoader(), service.getClass().getInterfaces(), new InvocationHandler() {
+    public AccountOperationService getProxy() {
+        return (AccountOperationService) Proxy.newProxyInstance(service.getClass().getClassLoader(), service.getClass().getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) {
                 Object returnVal = null;

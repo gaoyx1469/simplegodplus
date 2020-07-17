@@ -6,11 +6,13 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ * 账户操作接口
+ *
  * @Author gaoyx1469
  * @Date 2020/7/16
  * @Version 1.0
  */
-public interface AccountOperationWithoutAopService {
+public interface AccountOperationService {
 
     /**
      * 根据id查询账户信息

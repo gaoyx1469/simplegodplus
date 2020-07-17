@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.trial.spring.aop.entity.AccountEntity;
-import top.trial.spring.aop.service.AccountOperationWithoutAopService;
+import top.trial.spring.aop.service.AccountOperationService;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -20,13 +20,13 @@ import java.math.BigDecimal;
 public class SpringAccountOperationWithoutAopTest {
 
     @Resource(name = "accountOperationWithoutAopServiceTransactionImpl")
-    AccountOperationWithoutAopService serviceWithTransaction;
+    AccountOperationService serviceWithTransaction;
 
     @Resource(name = "accountOperationWithoutAopServiceImpl")
-    AccountOperationWithoutAopService serviceWithoutTransaction;
+    AccountOperationService serviceWithoutTransaction;
 
     @Resource(name = "getProxy")
-    AccountOperationWithoutAopService serviceWithProxy;
+    AccountOperationService serviceWithProxy;
 
     @Test
     public void solution() {
