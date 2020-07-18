@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <bean id="accountOperationTxService" class="top.trial.spring.tx.service.impl.AccountOperationTxServiceXmlImpl">
+        <property name="dao" ref="accountOperationTxDao"/>
+    </bean>
+    <bean id="accountOperationTxDao" class="top.trial.spring.tx.dao.impl.AccountOperationTxDaoXmlImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="dataSource" class="top.util.jdbc.MysqlDBCPUtil" factory-method="getDataSource"/>
+    <tx:advice id="tx">
+        <tx:attributes>
+            <tx:method name="transfer"/>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="pt"
+                      expression="execution(* top.trial.spring.tx.service.impl.AccountOperationTxServiceXmlImpl.*(..) )"/>
+        <aop:advisor advice-ref="tx" pointcut-ref="pt"/>
+    </aop:config>
+</beans>
