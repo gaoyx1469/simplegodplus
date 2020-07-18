@@ -14,14 +14,14 @@ import java.util.List;
 public interface AccountOperationDao {
 
     /**
-     * 根据id查询账户信息
+     * 查询所有账户信息
      *
      * @return List<AccountEntity>
      */
     List<AccountEntity> getAllAccounts() throws SQLException;
 
     /**
-     * 根据id查询账户信息
+     * 查询所有账户信息
      *
      * @param conn 数据库连接
      * @return List<AccountEntity>
