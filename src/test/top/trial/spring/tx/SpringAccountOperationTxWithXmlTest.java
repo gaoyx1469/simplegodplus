@@ -15,7 +15,8 @@ import java.math.BigDecimal;
  * @Version 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:top/trial/spring/spring_tx.xml")
+//@ContextConfiguration(locations = "classpath:top/trial/spring/spring_tx.xml")//全XML形式
+@ContextConfiguration(locations = "classpath:top/trial/spring/spring_tx_annotation.xml")//半注解形式
 public class SpringAccountOperationTxWithXmlTest {
 
     @Resource(name = "accountOperationTxService")
