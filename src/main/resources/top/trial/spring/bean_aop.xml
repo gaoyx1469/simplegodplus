@@ -41,6 +41,9 @@
             5、可以将切入点表达式提取出来，使用aop:pointcut标签包装
                 在aop:aspect内的aop:pointcut只在当前切面可以使用
                 在aop:aspect外aop:config内的aop:pointcut可以在所有切面中使用【注意：aop:pointcut标签必须在aop:aspect标签前面】
+            6、经试验得出：
+                aop:after-returning配置在aop:after之前，两者执行顺序是不正确的
+                aop:after-returning配置在aop:after之后，两者执行顺序无误
 
     -->
     <aop:config>
