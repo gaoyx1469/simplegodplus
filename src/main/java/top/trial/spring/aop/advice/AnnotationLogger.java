@@ -29,7 +29,7 @@ public class AnnotationLogger {
     /**
      * 作为前置通知,配置了全通配，所以调用service、dao、queryRunner等调用方法时都
      */
-    @Before("execution(* *..*.*(..))")
+    @Before("execution(* top.trial.spring.*.*(..))")
     public void beginLogging() {
 
         System.out.println("日志记录-beginLogging");
