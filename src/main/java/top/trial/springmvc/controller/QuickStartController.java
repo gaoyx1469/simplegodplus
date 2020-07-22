@@ -18,4 +18,9 @@ public class QuickStartController {
         System.out.println("QUICK START SUCCESS -- 入门成功");
         return "quickStartSuccess";
     }
+
+    @RequestMapping("/springMVCRequestParamsBinding")
+    public String requestParamsBinding() {
+        return "requestBindingPage";
+    }
 }
