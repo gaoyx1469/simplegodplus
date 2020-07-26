@@ -23,5 +23,16 @@
     测试Map字符串类型<input name="mapParam['myKey'].stringVal" type="text"/><br/>
     <input type="submit" value="提交">
 </form>
+<hr/>
+<hr/>
+<form method="post" action="paramsBinding/bindingSelfConvertType">
+    姓名<input name="name" type="text"/><br/>
+    id<input name="id" type="text"/><br/>
+    日期<input name="birthday" type="text"/><br/>
+    <input type="submit" value="提交">
+</form>
+<hr/>
+<hr/>
+<a href="paramsBinding/getServletAPI">获取Servlet原生API</a>
 </body>
 </html>
