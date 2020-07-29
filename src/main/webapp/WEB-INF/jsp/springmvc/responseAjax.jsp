@@ -9,8 +9,8 @@
 <html>
 <head>
     <title>ajax测试response返回json数据</title>
-    <script src="../WEB-INF/js/jquery-1.12.0.min.js"/>
-    <script>
+    <script type="application/javascript" src="../js/jquery-1.12.0.min.js"></script>
+    <script type="application/javascript">
         $(function () {
             $("#getData").click(function () {
                 alert("getData");
