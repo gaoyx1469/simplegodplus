@@ -25,6 +25,7 @@
             </set>
         </property>
     </bean>
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
     <!--配置启动springmvc注解支持，同时增加自定义类型转换器支持-->
     <mvc:annotation-driven conversion-service="conversion"/>
 </beans>
