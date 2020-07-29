@@ -91,7 +91,7 @@ public class RequestAnnotationController {
     @RequestMapping("/testSessionAttributes")
     public String testSessionAttributes(String sessionA, Model model) {
         System.out.println(sessionA);
-        //存储到request域对向中
+        //存储到request域对象中，然后由类上的@SessionAttributes注解将request域中指定的数据存入session
         model.addAttribute("sessionA", sessionA);
         return "requestAnnotationShow";
     }

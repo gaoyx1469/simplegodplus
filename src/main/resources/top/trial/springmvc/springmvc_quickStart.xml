@@ -25,6 +25,6 @@
             </set>
         </property>
     </bean>
-    <!--配置启动springmvc注解支持-->
+    <!--配置启动springmvc注解支持，同时增加自定义类型转换器支持-->
     <mvc:annotation-driven conversion-service="conversion"/>
 </beans>
