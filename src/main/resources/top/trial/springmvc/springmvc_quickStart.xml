@@ -25,6 +25,10 @@
             </set>
         </property>
     </bean>
+    <!--配置文件解析器对象，此处id必须配置成multipartResolver，否则报错：由于没有提供multi-part配置，无法处理parts-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSizePerFile" value="10485760"/>
+    </bean>
     <!--移除对js目录文件的拦截-->
     <mvc:resources location="/js/" mapping="/js/**"/>
     <!--配置启动springmvc注解支持，同时增加自定义类型转换器支持-->
