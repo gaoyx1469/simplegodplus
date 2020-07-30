@@ -1,5 +1,6 @@
 package top.trial.springmvc.controller;
 
+import com.sun.jersey.api.client.Client;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -96,4 +97,32 @@ public class FileUploadController {
         return "fileUploadSuccess";
     }
 
+    /**
+     * 使用SpringMVC，借助jersey库，实现文件的跨服务器上传
+     * 目前测得中文文件会报错400
+     * 另如果报405，需要修改tomcat的web.xml，对DefaultServlet增加
+     * <init-param>
+     * <param-name>readonly</param-name>
+     * <param-value>false</param-value>
+     * </init-param>
+     *
+     * @param filename MultipartFile  参数名称需要与表单中file标签的name属性值一致
+     * @return String
+     */
+    @RequestMapping("clientWay")
+    public String springMVCClientFileUploadWay(MultipartFile filename) {
+
+        System.out.println("springMVC跨服务器文件上传");
+
+        String fileName = filename.getOriginalFilename();
+        String newFileName = UUID.randomUUID().toString().replace("-", "") + "_" + fileName;//重定义文件名
+
+        String path = "http://localhost:9088/simplefileserver_war_exploded/tempUploadFiles/";
+        try {
+            Client.create().resource(path + newFileName).put(filename.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "fileUploadSuccess";
+    }
 }

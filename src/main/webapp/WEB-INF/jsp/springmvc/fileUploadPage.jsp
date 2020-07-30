@@ -21,5 +21,10 @@
     <h3>SpringMVC文件上传方式</h3><input type="file" name="filename"/><!--注意！必须要有name属性！！！-->
     <input type="submit" value="上传"/>
 </form>
+<hr/>
+<form action="clientWay" method="post" enctype="multipart/form-data">
+    <h3>SpringMVC跨服务器文件上传方式</h3><input type="file" name="filename"/><!--注意！必须要有name属性！！！-->
+    <input type="submit" value="上传"/>
+</form>
 </body>
 </html>
