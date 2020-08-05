@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--配置不需要进行登录控制的页面
+    <security:http security="none" pattern="/html/springsecurity/login.html"/>
+    <security:http security="none" pattern="/html/springsecurity/failure.html"/>-->
+
+    <security:http auto-config="true" use-expressions="false">
+        <!--intercept-url定义过滤规则，pattern是对哪些url过滤，access是请求该url需要什么权限-->
+        <!--设置放行权限，ROLE_ANONYMOUS也行
+        <security:intercept-url pattern="/html/springsecurity/login.html" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+        <!--设置放行权限，ROLE_ANONYMOUS也行
+        <security:intercept-url pattern="/html/springsecurity/failure.html" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+        <security:intercept-url pattern="/**" access="ROLE_USER"/>
+        <!--配置自定义登录页面
+        <security:form-login login-page="/html/springsecurity/login.html"
+                             login-processing-url="/html/springsecurity/login"
+                             username-parameter="username" password-parameter="password"
+                             authentication-failure-url="/html/springsecurity/failure.html"
+                             default-target-url="/html/springsecurity/success.html"
+                             authentication-success-forward-url="/html/springsecurity/success.html"/>-->
+        <!--关闭CSRF，默认是开启的
+        <security:csrf disabled="true"/>-->
+        <!--弹窗登录，当与form-login同时存在时，以form-login为主
+        <security:http-basic/>-->
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service><!--配置用户名、密码和角色，密码前的{noop}表示不加密，其它还有{sha256}/{scrypt}/bcrypt}/{pbkdf2}等，不指定会报错-->
+                <security:user name="user" password="{noop}user" authorities="ROLE_USER"/>
+                <security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
+            </security:user-service>
+            <!--从配置文件配置用户角色，只有第一个security:user-service标签能载入
+            <security:user-service properties="classpath:top/trial/springsecurity/users.properties"/>-->
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>
