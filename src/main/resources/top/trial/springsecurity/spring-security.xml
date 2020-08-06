@@ -25,7 +25,7 @@
                              authentication-failure-url="/html/springsecurity/failure.html"
                              default-target-url="/html/springsecurity/success.html"
                              authentication-success-forward-url="/html/springsecurity/success.html"/>-->
-        <!--关闭CSRF，默认是开启的
+        <!--关闭CSRF跨域请求，默认是开启的
         <security:csrf disabled="true"/>-->
         <!--弹窗登录，当与form-login同时存在时，以form-login为主
         <security:http-basic/>-->

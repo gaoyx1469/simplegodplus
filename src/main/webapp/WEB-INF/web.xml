@@ -8,7 +8,7 @@
     <!--配置文件加载-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:top/trial/springsecurity/spring-security.xml</param-value>
+        <param-value>classpath:top/trial/springsecurity/spring-security.xml,classpath:top/trial/springsecurity/bean.xml</param-value>
     </context-param>
 
     <!--配置SpringSecurity的过滤器-->
