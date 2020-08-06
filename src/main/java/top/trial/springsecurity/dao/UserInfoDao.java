@@ -17,21 +17,19 @@ public interface UserInfoDao {
 
     @Select("SELECT * FROM SGP_USER WHERE SU_NAME = #{0}")
     @Results({
-            @Result(id = true,column = "SU_ID",property = "id"),
-            @Result(column = "SU_NAME",property = "name"),
-            @Result(column = "SU_NICKNAME",property = "nickname"),
-            @Result(column = "SU_MOBILE",property = "phoneNumber"),
-            @Result(column = "SU_EMAIL",property = "email"),
-            @Result(column = "SU_BIRTHDAY",property = ""),
-            @Result(column = "SU_PASSWORD",property = "password"),
-            @Result(column = "SU_STT",property = "status"),
-            @Result(column = "SU_CREADATE",property = "createDate"),
-            @Result(column = "SU_MODIDATE",property = "updateDate"),
-            @Result(column = "SU_ID",property = "roles",many = @Many(
+            @Result(id = true, column = "SU_ID", property = "id"),
+            @Result(column = "SU_NAME", property = "name"),
+            @Result(column = "SU_NICKNAME", property = "nickname"),
+            @Result(column = "SU_MOBILE", property = "phoneNumber"),
+            @Result(column = "SU_EMAIL", property = "email"),
+            @Result(column = "SU_BIRTHDAY", property = "birthday"),
+            @Result(column = "SU_PASSWORD", property = "password"),
+            @Result(column = "SU_STT", property = "status"),
+            @Result(column = "SU_CREADATE", property = "createDate"),
+            @Result(column = "SU_MODIDATE", property = "updateDate"),
+            @Result(column = "SU_ID", property = "roles", many = @Many(
                     select = "top.trial.springsecurity.dao.RoleDao.getRolesByUserId"
-            )),
-
-
+            ))
     })
     UserDomain getUserByName(String username);
 

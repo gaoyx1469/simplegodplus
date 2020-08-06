@@ -15,6 +15,7 @@ public class UserDomain implements Serializable {
     private String email;
     private String password;
     private String phoneNumber;
+    private String birthday;
     private String status;
     private String statusStr;
     private String createDate;
@@ -69,6 +70,14 @@ public class UserDomain implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -118,6 +127,7 @@ public class UserDomain implements Serializable {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", birthday='" + birthday + '\'' +
                 ", status='" + status + '\'' +
                 ", statusStr='" + statusStr + '\'' +
                 ", createDate='" + createDate + '\'' +
