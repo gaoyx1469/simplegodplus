@@ -12,7 +12,7 @@
 
     <!-- 告知spring创建容器时要扫描的包 -->
     <context:component-scan
-            base-package="top.trial.spring.aop"/>
+            base-package="top.trial.spring.aop;top.trial.springmvc.controller"/>
     <!-- 告知spring容器采用注解方式进行AOP -->
     <aop:aspectj-autoproxy/>
 </beans>

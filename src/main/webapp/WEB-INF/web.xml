@@ -52,7 +52,9 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:top/trial/springmvc/springmvc_quickStart.xml</param-value>
+            <param-value>
+                classpath:top/trial/springmvc/springmvc_quickStart.xml;classpath:top/trial/springsecurity/spring-security-db.xml;classpath:top/trial/spring/bean_aop_log.xml
+            </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

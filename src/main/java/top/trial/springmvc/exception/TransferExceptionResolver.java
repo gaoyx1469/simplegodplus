@@ -19,8 +19,10 @@ public class TransferExceptionResolver implements HandlerExceptionResolver {
         TransferException exception;
         if (ex instanceof TransferException)
             exception = (TransferException) ex;
-        else
+        else {
+            ex.printStackTrace();
             exception = new TransferException("遇到了奇葩异常，我不认识");
+        }
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("errorMsg", exception.getShowMessage());//返回错误信息
