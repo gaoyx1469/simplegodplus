@@ -8,12 +8,14 @@
     <!--配置文件加载-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:top/trial/springsecurity/spring-security-db.xml</param-value>
+        <param-value>
+            classpath:top/trial/spring/bean_aop_log.xml,classpath:top/trial/springsecurity/spring-security-db.xml
+        </param-value>
     </context-param>
 
-    <!--配置SpringSecurity的过滤器-->
+    <!--配置SpringSecurity的过滤器，这个filter-name不能改-->
     <filter>
-        <filter-name>springSecurityFilterChain</filter-name><!--这个name不能改-->
+        <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
     <!--配置spring提供的字符编码过滤器-->
@@ -25,6 +27,7 @@
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>
+    <!---->
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
@@ -38,6 +41,9 @@
     <!---->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
     <!--配置springMVC的主拦截器(前端控制器)-->
