@@ -43,9 +43,6 @@
     <!--开启JSP页面对SPEL表达式的支持
     <bean id="webSecurityExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>-->
 
-    <!-- 告知spring创建容器时要扫描的包 -->
-    <context:component-scan
-            base-package="top.trial.springsecurity"/>
 
     <!-- 配置DataSource，静态工厂方法获得 -->
     <bean id="dataSource" class="top.util.jdbc.MysqlDBCPUtil"
