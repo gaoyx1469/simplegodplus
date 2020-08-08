@@ -11,6 +11,7 @@ public class TicketRunnableImpl implements Runnable {
 
     @Override
     public void run() {
+        System.out.println(Thread.currentThread().getName() + "线程开启");
         while (ticketNum > 0) {
             System.out.println(Thread.currentThread().getName() + ":" + ticketNum);
             try {
