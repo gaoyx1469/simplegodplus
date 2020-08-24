@@ -1,8 +1,8 @@
 package top.algorithm.realization;
 
 import top.algorithm.structure.CircularLinkedList;
+import top.algorithm.structure.SinglyLinkedNode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,14 +15,13 @@ import java.util.List;
  * @Version 1.0
  */
 public class JosephusProblem {
-
     /**
      * @param linkedList CircularLinkedList 环形链表的表头
      * @param skipNum    int 每多少个节点删除一个节点，要求输入大于等于1
      * @param retainNum  int 最后保留多少节点结束，要求输入大于等于0
-     * @return
+     * @return List<SinglyLinkedNode>
      */
-    public static List<CircularLinkedList> getJosephusProblemPath(CircularLinkedList linkedList, int skipNum, int retainNum) {
+    public static List<SinglyLinkedNode> getJosephusProblemPath(CircularLinkedList linkedList, int skipNum, int retainNum) {
 
         //校验输入
         if (linkedList == null)
@@ -33,10 +32,6 @@ public class JosephusProblem {
             throw new IllegalArgumentException("输入的retainNum不合法");
 
         //校验完毕，开始处理
-
-
-
-        List<CircularLinkedList> returnList = new ArrayList<>();
-        return returnList;
+        return linkedList.josephusProblemDelete(skipNum, retainNum);
     }
 }
