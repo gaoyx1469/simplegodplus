@@ -103,4 +103,14 @@ public class PropertiesUtil {
 
         return props.getProperty(name);
     }
+
+    /**
+     * 传入URI;URI以classespath为根目录，不需以/开头，以/进行目录结构分隔皆可，需要跟扩展名
+     *
+     * @param uri String
+     * @return InputStream
+     */
+    public static InputStream getPropertiesInputStreamByClassloader(String uri) {
+        return PropertiesUtil.class.getClassLoader().getResourceAsStream(uri);
+    }
 }
