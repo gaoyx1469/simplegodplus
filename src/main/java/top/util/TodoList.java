@@ -9,5 +9,5 @@ package top.util;
  */
 
 public interface TodoList {
-    // TODO TwoPhaseExit.java 线程两阶段退出演示代码
+    //
 }
