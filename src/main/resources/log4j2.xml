@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--status配置日志框架本身日志的日志输出级别，monitorInterval自动加载配置文件的间隔时间，最小为5，单位秒-->
+<configuration status="warn" monitorInterval="5">
+    <!--自定义全局属性-->
+    <properties>
+        <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c %M %L -%m%n"/>
+        <property name="log_dir" value="D:/workSpace/loggingSpace/simpleGodPlus"/>
+        <property name="htmlPattern" value="%-5level%d{yyyy-MM-dd HH:mm:ss.SSS}%thread%c%M%L%m"/>
+    </properties>
+    <!--控制日志输出的appender，指定输出到什么位置-->
+    <Appenders>
+        <Console name="CONSOLE_OUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
+        <File name="FILE_OUT" fileName="${log_dir}/log4j.log">
+            <PatternLayout pattern="${pattern}"/>
+        </File>
+        <!--使用随机读写流输出日志，提高性能-->
+        <RandomAccessFile name="ACCESS_FILE" fileName="${log_dir}/access.log">
+            <PatternLayout pattern="${pattern}"/>
+        </RandomAccessFile>
+        <RollingFile name="ROLL_FILE_OUT" fileName="${log_dir}/rollLog4j.log"
+                     filePattern="${log_dir}/$${date:yyyy-MM-dd}/rollLog4j-%d{yyyy-MM-dd-HH-mm}-%i.log">
+            <!--日志级别过滤器-->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${pattern}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/><!--系统启动时就触发拆分规则-->
+                <SizeBasedTriggeringPolicy size="10 MB"/><!--按文件大小拆分-->
+                <TimeBasedTriggeringPolicy/><!--按时间节点拆分-->
+            </Policies>
+            <DefaultRolloverStrategy max="30"/><!--限定同一日志目录下最多文件数-->
+        </RollingFile>
+        <!--配置AsyncAppender方式异步日志,Loggers中的logget引用这个appender就行-->
+        <!--
+        <Async name="async">
+            <AppenderRef ref="ROLL_FILE_OUT"/>
+        </Async>-->
+    </Appenders>
+
+    <Loggers>
+        <!--includeLocation是否包含方法和行号信息，关闭后性能好，据说不关，性能还不如同步的-->
+        <AsyncLogger name="top.trial" level="warn" includeLocation="false" additivity="false">
+            <AppenderRef ref="CONSOLE_OUT"/>
+        </AsyncLogger>
+        <Root level="trace">
+            <AppenderRef ref="CONSOLE_OUT"/>
+        </Root>
+    </Loggers>
+
+</configuration>

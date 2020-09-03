@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!--自定义全局属性-->
+    <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %c %M %L -%m%n"/>
+    <property name="log_dir" value="D:/workSpace/loggingSpace/simpleGodPlus"/>
+    <property name="htmlPattern" value="%-5level%d{yyyy-MM-dd HH:mm:ss.SSS}%thread%c%M%L%m"/>
+
+    <!--控制日志输出的appender，指定输出到什么位置-->
+    <appender name="CONSOLE_OUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target><!--指定控制台输出时，使用哪种输出流，默认使用System.out-->
+        <encoder><!--控制日志输出的layout，默认使用的是PatternLayoutEncoder-->
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!--日志过滤，控制台只输出WARN和ERROR-->
+            <level>WARN</level>
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="FILE_OUT" class="ch.qos.logback.core.FileAppender">
+        <file>${log_dir}/logback.log</file><!--日志文件保存路径-->
         <encoder>
-            <pattern>%date{HH:mm:ss} [%t] %logger -%m%n</pattern>
+            <pattern>${pattern}</pattern>
         </encoder>
     </appender>
-    <logger name="top.trial.concurrent" level="DEBUG">
-        <appender-ref ref="STDOUT"/>
+    <appender name="HTML_OUT" class="ch.qos.logback.core.FileAppender">
+        <file>${log_dir}/logback.html</file><!--日志文件保存路径-->
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>${htmlPattern}</pattern><!--html输出不需要各种空格和换行符-->
+            </layout>
+        </encoder>
+    </appender>
+    <appender name="ROLL_FILE_OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_dir}/rollLogback.log</file><!--日志文件保存路径-->
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"><!--日志文件备份和压缩位置-->
+            <maxFileSize>100MB</maxFileSize>
+            <!--按小时归档日志文件，若小时内归档文件大于100MB，则分文件归档，%i为从0递增-->
+            <fileNamePattern>${log_dir}/logback.%d{yyyy-MM-dd-HH}.log%i.gz</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--异步日志记录，减少对性能的影响，相当于包装类？-->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ROLL_FILE_OUT"/>
+    </appender>
+
+    <!--自定义控制某个包的输出级别和appender，输出级别覆盖，appender叠加，如果使用additivity属性置为false，则不继承root logger-->
+    <logger name="top.trial" level="DEBUG">
+        <appender-ref ref="FILE_OUT"/>
+        <!--<appender-ref ref="HTML_OUT"/>-->
     </logger>
+    <!--配置root logger，指定使用哪种appender-->
     <root level="ERROR">
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="CONSOLE_OUT"/>
     </root>
 </configuration>

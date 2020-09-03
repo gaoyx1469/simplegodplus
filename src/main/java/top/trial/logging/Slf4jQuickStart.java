@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
     public static void main(String[] args) {
 
-        //五种日志级别，默认打印到info级别
+        //五种日志级别，内置实现默认打印到info级别
         LOGGER.error("error");
         LOGGER.warn("warn");
         LOGGER.info("info");
