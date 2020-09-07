@@ -6,11 +6,12 @@
         <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c %M %L -%m%n"/>
         <property name="log_dir" value="D:/workSpace/loggingSpace/simpleGodPlus"/>
         <property name="htmlPattern" value="%-5level%d{yyyy-MM-dd HH:mm:ss.SSS}%thread%c%M%L%m"/>
+        <property name="simplePattern" value="[%-5level] %d{HH:mm:ss.SSS} [%t] -%m%n"/>
     </properties>
     <!--控制日志输出的appender，指定输出到什么位置-->
     <Appenders>
         <Console name="CONSOLE_OUT" target="SYSTEM_OUT">
-            <PatternLayout pattern="${pattern}"/>
+            <PatternLayout pattern="${simplePattern}"/>
         </Console>
         <File name="FILE_OUT" fileName="${log_dir}/log4j.log">
             <PatternLayout pattern="${pattern}"/>
@@ -40,7 +41,7 @@
 
     <Loggers>
         <!--includeLocation是否包含方法和行号信息，关闭后性能好，据说不关，性能还不如同步的-->
-        <AsyncLogger name="top.trial" level="warn" includeLocation="false" additivity="false">
+        <AsyncLogger name="top.trial" level="debug" includeLocation="false" additivity="false">
             <AppenderRef ref="CONSOLE_OUT"/>
         </AsyncLogger>
         <Root level="trace">
