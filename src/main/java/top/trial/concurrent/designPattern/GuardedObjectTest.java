@@ -1,4 +1,4 @@
-package top.trial.thread.designPattern;
+package top.trial.concurrent.designPattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package top.trial.thread.designPattern;
+package top.trial.concurrent.designPattern;
 
 import java.util.Hashtable;
 import java.util.Map;

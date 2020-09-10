@@ -1,4 +1,4 @@
-package top.trial.thread.designPattern;
+package top.trial.concurrent.designPattern;
 
 /**
  * 同步模式--保护性暂停，拓展解耦，实现多个线程的get和set

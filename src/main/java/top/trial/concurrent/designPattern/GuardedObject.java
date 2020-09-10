@@ -1,4 +1,4 @@
-package top.trial.thread.designPattern;
+package top.trial.concurrent.designPattern;
 
 /**
  * 同步模式--保护性暂停，初始版，参考join
