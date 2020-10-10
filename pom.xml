@@ -14,6 +14,7 @@
         <module>java-spring</module>
         <module>java-springmvc</module>
         <module>java-springsecurity</module>
+        <module>java-springboot</module>
     </modules>
     <packaging>pom</packaging>
 
