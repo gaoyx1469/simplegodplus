@@ -10,6 +10,7 @@ package top.trial.designPattern.singletonPattern;
 public class SingletonPatternLazy {
 
     private SingletonPatternLazy() {
+        System.out.println("SingletonPatternLazy初始化");
     }
 
     private static volatile SingletonPatternLazy singletonPatternLazy;
@@ -23,5 +24,9 @@ public class SingletonPatternLazy {
             }
         }
         return singletonPatternLazy;
+    }
+
+    public void theMethod() {
+        System.out.println("SingletonPatternLazy---theMethod");
     }
 }

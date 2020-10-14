@@ -9,17 +9,22 @@ package top.trial.designPattern.singletonPattern;
  */
 public class SingletonPatternHungry {
 
-    //private static SingletonPatternHungry singletonPatternHungry = new SingletonPatternHungry();
+    //private static final SingletonPatternHungry singletonPatternHungry = new SingletonPatternHungry();//静态常量模式
     private static final SingletonPatternHungry singletonPatternHungry;
 
-    static {
+    static {//静态代码块模式
         singletonPatternHungry = new SingletonPatternHungry();
     }
 
     private SingletonPatternHungry() {
+        System.out.println("SingletonPatternHungry初始化");
     }
 
     public static SingletonPatternHungry getInstance() {
         return singletonPatternHungry;
+    }
+
+    public void theMethod() {
+        System.out.println("SingletonPatternHungry---theMethod");
     }
 }
